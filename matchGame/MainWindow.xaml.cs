@@ -15,16 +15,27 @@ using System.Windows.Shapes;
 
 namespace matchGame
 {
+    using System.Windows.Threading;
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer timer = new DispatcherTimer();
+        int tenthsOfSecondsElapsed;
+        int matchesFound;
         public MainWindow()
         {
             InitializeComponent();
 
+            timer.Interval = TimeSpan.FromSeconds(.1);
+            timer.Tick += Timer_Tick;
             SetUpGame();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void SetUpGame()
@@ -40,8 +51,8 @@ namespace matchGame
                 "🦊", "🦊",
                 "🐻", "🐻",
             };
-            Random random= new Random();
-            
+            Random random = new Random();
+
             foreach (TextBlock textBlock in mainGrid1.Children.OfType<TextBlock>())
             {
                 int index = random.Next(animalEmoji.Count);
@@ -50,14 +61,30 @@ namespace matchGame
                 animalEmoji.RemoveAt(index);
             }
         }
-        TextBlock lasrTextBlockClicked;
+        TextBlock lastTextBlockClicked;
         bool findingMatch = false;
-
-        private void TextBlock_MouseDown(object sender, MouseEventArgs e);
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TextBlock textBlock = seder as TextBlock;
-        if (findingMatch == false)
-    }
+            TextBlock textBlock = sender as TextBlock;
+            if (findingMatch == false)
+            {
+                textBlock.Visibility = Visibility.Hidden;
+                lastTextBlockClicked = textBlock;
+                findingMatch = true;
+            }
+            else if (textBlock.Text == lastTextBlockClicked.Text)
+            {
+                textBlock.Visibility = Visibility.Hidden;
+                findingMatch = false;
+            }
+            else
+            {
+                lastTextBlockClicked.Visibility = Visibility.Visible;
+                findingMatch = false;
+            }
         }
+    }
+}
+        
     
 

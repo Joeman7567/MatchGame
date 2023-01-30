@@ -51,5 +51,6 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="TextBlock_MouseDown"/>
         <TextBlock Text="?" FontSize="36" Grid.Row="3" Grid.Column="5"
                    HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="TextBlock_MouseDown"/>
+        <TextBlock x:Name="timeTextBlock" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="55" Width="156" FontSize="36"/>
     </Grid>
 </Window>
