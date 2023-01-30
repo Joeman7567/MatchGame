@@ -50,5 +50,14 @@ namespace matchGame
                 animalEmoji.RemoveAt(index);
             }
         }
+        TextBlock lasrTextBlockClicked;
+        bool findingMatch = false;
+
+        private void TextBlock_MouseDown(object sender, MouseEventArgs e);
+        {
+            TextBlock textBlock = seder as TextBlock;
+        if (findingMatch == false)
     }
-}
+        }
+    
+
